@@ -3,7 +3,7 @@
     "displayName": "razor-formatter",
     "description": "prettifier for .net razor files",
     "version": "0.0.1",
-    "publisher": "kookweb",
+    "publisher": "Kookweb",
     "engines": {
         "vscode": "^1.22.0"
     },
