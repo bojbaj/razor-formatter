@@ -1,0 +1,47 @@
+{
+    "name": "razor-formatter",
+    "displayName": "razor-formatter",
+    "description": "prettifier for .net razor files",
+    "version": "0.0.1",
+    "publisher": "kookweb",
+    "engines": {
+        "vscode": "^1.22.0"
+    },
+    "repository": {
+        "url": "https://github.com/Kookweb-ir/razor-formatter.git"
+    },
+    "categories": [
+        "Other",
+        "Formatters"
+    ],
+    "activationEvents": [
+        "onLanguage:razor",
+        "onCommand:extension.formatting"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [{
+            "command": "extension.formatting",
+            "title": "Format Razor File"
+        }]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"        
+    },
+    "dependencies": {
+        "js-beautify": "^1.6.4",
+        "mkdirp": "^0.5.1"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "tslint": "^5.8.0",
+        "@types/strip-json-comments": "^0.0.28",
+        "@types/resolve-from": "0.0.18",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}
