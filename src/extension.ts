@@ -218,9 +218,7 @@ class Formatter {
 
         var start = new vscode.Position(0, 0);
         var end = new vscode.Position(document.lineCount - 1, document.lineAt(document.lineCount - 1).text.length);
-        var range = new vscode.Range(start, end);
-
-        var result: vscode.TextEdit[] = [];
+        var range = new vscode.Range(start, end);        
 
         var content = document.getText(range);
 
