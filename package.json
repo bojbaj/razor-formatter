@@ -2,7 +2,7 @@
     "name": "razor-formatter",
     "displayName": "razor-formatter",
     "description": "prettifier for .net razor files",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "Kookweb",
     "engines": {
         "vscode": "^1.22.0"
