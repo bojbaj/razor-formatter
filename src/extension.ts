@@ -7,6 +7,23 @@ import fs = require('fs');
 import mkdirp = require('mkdirp');
 import path = require('path');
 
+
+export function format(document: vscode.TextDocument, range: vscode.Range) {
+    if (range === null) {
+        var start = new vscode.Position(0, 0);
+        var end = new vscode.Position(document.lineCount - 1, document.lineAt(document.lineCount - 1).text.length);
+        range = new vscode.Range(start, end);
+    }
+    var result: vscode.TextEdit[] = [];
+    var content = document.getText(range);
+    var formatted = beatify(content, document.languageId);
+
+    if (formatted) {
+        result.push(new vscode.TextEdit(range, formatted));
+    }
+    return result;
+};
+
 function getRootPath() {
     return vscode.workspace.rootPath || '.';
 }
