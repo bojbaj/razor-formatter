@@ -51,7 +51,7 @@ function getOptions() {
         } catch (error) {
             indent_char = " ";
         }
-    }   
+    }
 
     return {
         indent_size: indent_size,
@@ -60,12 +60,13 @@ function getOptions() {
 }
 function beatify(documentContent: String, languageId) {
     var options = getOptions();
-    return jsbeautify.html(documentContent, options);
+    var formatted = jsbeautify.html(documentContent, options);
+    return formatted;
 }
 
 export function activate(context: vscode.ExtensionContext) {
 
-    registerDocType();
+    registerDocType('razor');
 
     let formatter = new Formatter();
     context.subscriptions.push(vscode.commands.registerCommand('extension.formatting', () => {
@@ -103,8 +104,8 @@ export function activate(context: vscode.ExtensionContext) {
         formatter.onSave(e)
     }));
 
-    function registerDocType() {
-        let type = 'razor';
+
+    function registerDocType(type) {
         context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider(type, {
             provideDocumentFormattingEdits: (document, options, token) => {
                 return formatter.registerBeautify(null)
@@ -117,7 +118,7 @@ export function activate(context: vscode.ExtensionContext) {
                 return formatter.registerBeautify(new vscode.Range(start, end))
             }
         }));
-    }
+}
 
 
 
@@ -160,8 +161,10 @@ class Formatter {
         if (!editor) {
             return;
         }
-        let content = editor.document.getText(range);
-        return beatify(content, range);
+        // let content = editor.document.getText(range);
+        //return beatify(content, range);
+        let document = editor.document;
+        return format(document, range);
     }
 
 
@@ -176,7 +179,7 @@ class Formatter {
                 // showMesage('Local config file existed: ' + local);
             } else if (err.code == 'ENOENT') {
                 fs.writeFile(local, content, function (e) {
-                    showMesage('Generate local config file: ' + local)
+                    //showMesage('Generate local config file: ' + local)
                 })
             } else {
                 showMesage('Some other error: ' + err.code);
@@ -235,7 +238,7 @@ class Formatter {
 
         var start = new vscode.Position(0, 0);
         var end = new vscode.Position(document.lineCount - 1, document.lineAt(document.lineCount - 1).text.length);
-        var range = new vscode.Range(start, end);        
+        var range = new vscode.Range(start, end);
 
         var content = document.getText(range);
 
