@@ -11,3 +11,8 @@ This extension wraps [js-beautify](https://github.com/beautify-web/js-beautify) 
 *   then you can set indent size and indent characer.
 
 remember to restart vscode after save setting file.
+
+
+##Usage:
+
+inside your razor file press CTRL + SHIFT + I or right click and select "Format Document"
